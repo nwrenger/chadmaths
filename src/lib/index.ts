@@ -25,3 +25,31 @@ export function difCount(dif: number): number {
 export function clamp(value: number, min: number, max: number): number {
 	return Math.max(min, Math.min(max, value));
 }
+
+/// Checks if arrays are equal
+export function arraysEqual(arr1: any[], arr2: any[]) {
+	if (arr1.length !== arr2.length) {
+		return false;
+	}
+
+	const processElement = (el: any) => {
+		if (typeof el === 'number') {
+			return parseFloat(el.toFixed(1));
+		}
+		return el;
+	};
+
+	const processedArr1 = arr1.map(processElement);
+	const processedArr2 = arr2.map(processElement);
+
+	const sortedArr1 = [...processedArr1].sort();
+	const sortedArr2 = [...processedArr2].sort();
+
+	for (let i = 0; i < sortedArr1.length; i++) {
+		if (sortedArr1[i] !== sortedArr2[i]) {
+			return false;
+		}
+	}
+
+	return true;
+}

@@ -37,9 +37,11 @@
 		{:else}
 			<Carousel.Item>
 				<div class="p-1">
-					<div class="flex items-center justify-center">
-						<LoaderCircle scale={48} class="animate-spin" />
-					</div>
+					<Card.Root>
+						<Card.Content class="flex items-center justify-center p-6">
+							<LoaderCircle scale={48} class="animate-spin" />
+						</Card.Content>
+					</Card.Root>
 				</div>
 			</Carousel.Item>
 		{/each}
