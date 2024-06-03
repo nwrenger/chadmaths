@@ -11,5 +11,8 @@ ChadMaths represents the next generation of math learning tools, evolving signif
   - Median or Local Ascent, done
   - Zeros, done
   - Y Axial intercept, done
-  - Intervals of some sort
+  - Intervals of some sort  
+  - [x] Linear Functions
+  - [x] 2nd grade Functions
+  - [ ] 3rd grade Functions
 - [x] Fix Highlight Stepper Bug
