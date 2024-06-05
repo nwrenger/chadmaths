@@ -1,6 +1,6 @@
 {
-	"name": "quickmaths-chad",
-	"version": "0.0.1",
+	"name": "chadmaths",
+	"version": "0.1.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",

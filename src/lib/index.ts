@@ -42,8 +42,8 @@ export function arraysEqual(arr1: any[], arr2: any[]) {
 	const processedArr1 = arr1.map(processElement);
 	const processedArr2 = arr2.map(processElement);
 
-	const sortedArr1 = [...processedArr1].sort();
-	const sortedArr2 = [...processedArr2].sort();
+	const sortedArr1 = [...processedArr1];
+	const sortedArr2 = [...processedArr2];
 
 	for (let i = 0; i < sortedArr1.length; i++) {
 		if (sortedArr1[i] !== sortedArr2[i]) {

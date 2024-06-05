@@ -3,9 +3,9 @@
 	import * as Select from '$lib/components/ui/select';
 
 	export let tabindex = 0;
-	export let userAnswerOne: number | undefined | 'undefined' = undefined;
+	export let userAnswerOne: number | undefined | 'undefined' | string = undefined;
 	export let placeholderAnswerOne: string = '';
-	export let userAnswerTwo: number | undefined | 'undefined' = undefined;
+	export let userAnswerTwo: number | undefined | 'undefined' | string = undefined;
 	export let twoAnswers = false;
 	export let placeholderAnswerTwo: string = '';
 
