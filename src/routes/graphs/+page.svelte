@@ -240,7 +240,7 @@
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
 			<AlertDialog.Cancel>Close</AlertDialog.Cancel>
-			<AlertDialog.Action on:click={() => goto(`/?dif=${difficulty || ''}&mode=mental`)}
+			<AlertDialog.Action on:click={() => goto(`/?dif=${difficulty || ''}&mode=graphs`)}
 				>Ok</AlertDialog.Action
 			>
 		</AlertDialog.Footer>
