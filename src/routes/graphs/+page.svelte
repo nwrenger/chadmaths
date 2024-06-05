@@ -107,7 +107,7 @@
 				});
 				graph.questions.push({
 					question: { string: 'Where is the Y Axial intercept (f(0) = ?)', type: QuestType.Y },
-					answers: [a * (-b) ** 2 + c],
+					answers: !isNaN(-a * Math.pow(b, 3) + c) ? [-a * Math.pow(b, 3) + c] : ['undefined'],
 					userAnswer: []
 				});
 				let root3 = Math.cbrt(-(c / a)) || undefined;
@@ -256,7 +256,6 @@
 	let:i
 	onCancel={() => goto(`/?dif=${difficulty || ''}&mode=graphs`)}
 	onCheck={() => {
-		console.log(graph.questions);
 		if (checkAnswers()) {
 			correctDialog = true;
 		} else {
