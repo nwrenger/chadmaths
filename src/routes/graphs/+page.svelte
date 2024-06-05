@@ -72,6 +72,9 @@
 				});
 				break;
 			case 2:
+				while (a == 0) {
+					a = getRandomInt(-2, 2);
+				}
 				graph.fn = `${a} * (x - ${b}) ^ 2 + ${c}`;
 				graph.questions.push({
 					question: { string: 'Where is the Extreme Point', type: QuestType.Point },
