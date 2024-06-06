@@ -299,16 +299,16 @@
 		{:else if graph.questions[i] && graph.questions[i].question.type == QuestType.Points}
 			<PointInput
 				twoAnswers
-				placeholderAnswerOne="Input X of High Point..."
-				placeholderAnswerTwo="Input Y of High Point..."
+				placeholderAnswerOne="Input X (High Point)..."
+				placeholderAnswerTwo="Input Y (High Point)..."
 				tabindex={stepperPage - 1 == i ? 0 : -1}
 				bind:userAnswerOne={graph.questions[i].userAnswer[0]}
 				bind:userAnswerTwo={graph.questions[i].userAnswer[1]}
 			/>
 			<PointInput
 				twoAnswers
-				placeholderAnswerOne="Input X Low Point..."
-				placeholderAnswerTwo="Input Y Low Point..."
+				placeholderAnswerOne="Input X (Low Point)..."
+				placeholderAnswerTwo="Input Y (Low Point)..."
 				tabindex={stepperPage - 1 == i ? 0 : -1}
 				bind:userAnswerOne={graph.questions[i].userAnswer[2]}
 				bind:userAnswerTwo={graph.questions[i].userAnswer[3]}
