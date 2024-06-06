@@ -14,7 +14,7 @@
 		questions: GraphQuest[];
 	}
 
-	type Answer = 'undefined'[] | number[] | undefined[] | string[];
+	type Answer = ('undefined' | number | undefined | string)[];
 
 	interface GraphQuest {
 		question: Quest;
@@ -130,27 +130,14 @@
 				let sqrtTerm = Math.sqrt(1 / (3 * a));
 				if (a != 0 && !isNaN(sqrtTerm)) {
 					extremePoints = [
-						b + sqrtTerm,
-						a * Math.pow(b + sqrtTerm - b, 3) - (b + sqrtTerm) + c,
 						b - sqrtTerm,
-						a * Math.pow(b - sqrtTerm - b, 3) - (b - sqrtTerm) + c
+						a * Math.pow(b - sqrtTerm - b, 3) - (b - sqrtTerm) + c,
+						b + sqrtTerm,
+						a * Math.pow(b + sqrtTerm - b, 3) - (b + sqrtTerm) + c
 					];
 				} else {
-					extremePoints = ['undefined', 'undefined'];
+					extremePoints = ['undefined', undefined, 'undefined'];
 				}
-
-				// Finding the turning point (second derivative = 0)
-				let turningPoint: Answer = a != 0 ? [b, a * Math.pow(b - b, 3) - b + c] : ['undefined'];
-
-				// Finding the Y-axial intercept
-				let yIntercept: Answer = !isNaN(a * Math.pow(b, 3) + c)
-					? [a * Math.pow(b, 3) + c]
-					: ['undefined'];
-
-				// Finding the X-axial intercept (approximated solution)
-				let xIntercept: Answer = !isNaN(Math.cbrt(-(c / a)))
-					? [-(c / a)] || 'undefined'
-					: ['undefined'];
 
 				// Interval where X grows positively
 				let positiveIntervals: Answer = [];
@@ -162,17 +149,18 @@
 
 				graph.questions.push({
 					question: { string: 'Where is the Turning Point', type: QuestType.Point },
-					answers: turningPoint.length > 0 ? turningPoint : ['undefined'],
+					answers: a != 0 ? [b, a * Math.pow(b - b, 3) - b + c] : ['undefined'],
 					userAnswer: []
 				});
 				graph.questions.push({
 					question: { string: 'Where is the Y Axial intercept (f(0) = ?)', type: QuestType.Y },
-					answers: yIntercept,
+					answers: !isNaN(-a * Math.pow(b, 3) + c) ? [-a * Math.pow(b, 3) + c] : ['undefined'],
 					userAnswer: []
 				});
+				let root4 = Math.cbrt(-(c / a)) || undefined;
 				graph.questions.push({
 					question: { string: 'Where is the X Axial intercept (f(?) = 0)', type: QuestType.X },
-					answers: xIntercept,
+					answers: 0 !== a && root4 ? [b + root4] : ['undefined'],
 					userAnswer: []
 				});
 				graph.questions.push({
@@ -272,9 +260,21 @@
 >
 	<div class="w-full space-y-1">
 		<h1 class="text-xl font-semibold">{i + 1}. {graph.questions[i].question.string}?</h1>
-		{#if graph.questions[i].question.type == QuestType.Ascent || graph.questions[i].question.type == QuestType.X || graph.questions[i].question.type == QuestType.Y}
+		{#if graph.questions[i].question.type == QuestType.Ascent}
 			<PointInput
-				placeholderAnswerOne="Input Answer..."
+				placeholderAnswerOne="Input Ascent..."
+				tabindex={stepperPage - 1 == i ? 0 : -1}
+				bind:userAnswerOne={graph.questions[i].userAnswer[0]}
+			/>
+		{:else if graph.questions[i] && graph.questions[i].question.type == QuestType.X}
+			<PointInput
+				placeholderAnswerOne="Input X..."
+				tabindex={stepperPage - 1 == i ? 0 : -1}
+				bind:userAnswerOne={graph.questions[i].userAnswer[0]}
+			/>
+		{:else if graph.questions[i] && graph.questions[i].question.type == QuestType.Y}
+			<PointInput
+				placeholderAnswerOne="Input Y..."
 				tabindex={stepperPage - 1 == i ? 0 : -1}
 				bind:userAnswerOne={graph.questions[i].userAnswer[0]}
 			/>
@@ -299,16 +299,16 @@
 		{:else if graph.questions[i] && graph.questions[i].question.type == QuestType.Points}
 			<PointInput
 				twoAnswers
-				placeholderAnswerOne="Input 1. X..."
-				placeholderAnswerTwo="Input 1. Y..."
+				placeholderAnswerOne="Input X of High Point..."
+				placeholderAnswerTwo="Input Y of High Point..."
 				tabindex={stepperPage - 1 == i ? 0 : -1}
 				bind:userAnswerOne={graph.questions[i].userAnswer[0]}
 				bind:userAnswerTwo={graph.questions[i].userAnswer[1]}
 			/>
 			<PointInput
 				twoAnswers
-				placeholderAnswerOne="Input 2. X..."
-				placeholderAnswerTwo="Input 2. Y..."
+				placeholderAnswerOne="Input X Low Point..."
+				placeholderAnswerTwo="Input Y Low Point..."
 				tabindex={stepperPage - 1 == i ? 0 : -1}
 				bind:userAnswerOne={graph.questions[i].userAnswer[2]}
 				bind:userAnswerTwo={graph.questions[i].userAnswer[3]}
