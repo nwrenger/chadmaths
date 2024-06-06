@@ -157,10 +157,10 @@
 					answers: !isNaN(-a * Math.pow(b, 3) + c) ? [-a * Math.pow(b, 3) + c] : ['undefined'],
 					userAnswer: []
 				});
-				let root4 = Math.cbrt(-(c / a)) || undefined;
+				let xIntercept = findXIntercept(a, b, c);
 				graph.questions.push({
 					question: { string: 'Where is the X Axial intercept (f(?) = 0)', type: QuestType.X },
-					answers: 0 !== a && root4 ? [b + root4] : ['undefined'],
+					answers: xIntercept ? [xIntercept] : ['undefined'],
 					userAnswer: []
 				});
 				graph.questions.push({
@@ -180,6 +180,37 @@
 		}
 		graph = graph;
 	});
+
+	function findXIntercept(
+		a: number,
+		b: number,
+		c: number,
+		initialGuess = 0,
+		tolerance = 1e-7,
+		maxIterations = 1000
+	): number | undefined {
+		function f(x: number) {
+			return a * Math.pow(x - b, 3) - x + c;
+		}
+
+		function fPrime(x: number) {
+			return 3 * a * Math.pow(x - b, 2) - 1;
+		}
+
+		let x = initialGuess;
+		for (let i = 0; i < maxIterations; i++) {
+			let fx = f(x);
+			let fpx = fPrime(x);
+
+			if (Math.abs(fx) < tolerance) {
+				return x;
+			}
+
+			x = x - fx / fpx;
+		}
+
+		return undefined;
+	}
 
 	function checkAnswers(): boolean {
 		let correct = true;
