@@ -22,7 +22,7 @@
 			case 'mental':
 				return 'Mental Calculus';
 			case 'graphs':
-				return 'Graphs & Analysis';
+				return 'Graphs';
 			default:
 				return '';
 		}
@@ -68,7 +68,7 @@
 		</Select.Trigger>
 		<Select.Content>
 			<Select.Item value="mental">Mental Calculus</Select.Item>
-			<Select.Item value="graphs">Graphs & Analysis</Select.Item>
+			<Select.Item value="graphs">Graphs</Select.Item>
 		</Select.Content>
 	</Select.Root>
 	<Select.Root bind:selected={difficulty}>
