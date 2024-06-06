@@ -51,13 +51,12 @@
 	<meta name="description" content="Start your journey with chadmaths." />
 </svelte:head>
 
-<div class="text-center">
-	<h1 class="pb-2 text-4xl font-semibold">chadmaths</h1>
-	<p>
-		Quick, intuitive, and immensely fun, chadmaths makes learning math a dynamic and rewarding
-		experience. Start mastering math the exciting way today!
-	</p>
-</div>
+<h1 class="pt-2 text-center text-4xl font-semibold">chadmaths</h1>
+
+<p class="text-center">
+	Quick, intuitive, and immensely fun, chadmaths makes learning math a dynamic and rewarding
+	experience. Start mastering math the exciting way today!
+</p>
 
 <p class="text-center">Select you desired mode and difficulty to practice down below!</p>
 
