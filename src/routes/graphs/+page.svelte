@@ -205,8 +205,8 @@
 </script>
 
 <svelte:head>
-	<title>Graphs & Analysis</title>
-	<meta name="description" content="Graphs & Analysis using your EYES!" />
+	<title>Graphs</title>
+	<meta name="description" content="Solve Graphs related questions using your EYES!" />
 </svelte:head>
 
 <AlertDialog.Root bind:open={wrongDialog} onOpenChange={(value) => (wrongDialog = value)}>
