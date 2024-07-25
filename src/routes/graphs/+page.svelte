@@ -139,7 +139,7 @@
 					extremePoints = ['undefined', undefined, 'undefined'];
 				}
 
-				// Interval where X grows positively
+				// Interval where Y grows positively
 				let positiveIntervals: Answer = [];
 				if (a != 0 && !isNaN(sqrtTerm)) {
 					positiveIntervals = [b - sqrtTerm, b + sqrtTerm];
@@ -170,7 +170,7 @@
 				});
 				graph.questions.push({
 					question: {
-						string: 'Where is an Interval where X grows Negatively',
+						string: 'Where is an Interval where Y grows Negatively',
 						type: QuestType.Interval
 					},
 					answers: positiveIntervals.length > 0 ? positiveIntervals : ['undefined'],
